@@ -1,0 +1,39 @@
+.recipesGallery {
+    margin-top: 1%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.recipeLink {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: max-content;
+    height: 50px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #0c0c0c;
+    text-decoration: none;
+    color: #333;
+    display: block;
+    background-color: #d2b48c;
+    transition: color 0.3s;
+  }
+
+.recipeLink:hover {
+    background-color: #654321;
+    color: white;
+}
+
+.searchDiv {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+}
+
+.parent .button {
+    margin-top: 0;
+    margin-left: 5%;
+}
+
+.toggleDiv {
+    margin-top: 1%;
+}
+  

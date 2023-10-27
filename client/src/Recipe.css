@@ -1,0 +1,13 @@
+.recipe{
+  margin-top: 5%;
+  white-space: pre-line;
+}
+
+.recipe label{
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.recipe p{
+  text-align: center;
+}

@@ -1,0 +1,15 @@
+.register {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;
+  flex-direction: column; /* Display children elements in a column */
+  align-items: center;
+  margin-top: 3%;
+  margin-left: 5%;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column; /* Display form elements in a column */
+  align-items: center;
+  margin-bottom: 10px; /* Add some space between form elements */
+}

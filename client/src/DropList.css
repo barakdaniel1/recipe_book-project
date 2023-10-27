@@ -1,0 +1,22 @@
+/* Style the dropdown container */
+select {
+    width: 200px; /* Set a specific width */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    color: #333;
+    margin-right: 2%;
+}
+
+/* Style the dropdown options */
+select option {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Style the hover effect on options */
+select option:hover {
+    background-color: #ddd;
+}

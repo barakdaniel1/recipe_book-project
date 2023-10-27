@@ -1,0 +1,15 @@
+User:{
+	role: String; // admin/user
+	username: String;
+	password: String;
+	recipes: Recipe[]  // list of recipes that he added.
+	refreshToken: String
+}
+
+Recipe:{
+	name: String;
+	type: String; //meat,milk,parve
+	tags: String; //daily,holiday...
+	ingredients: String;
+	howToMake: String;
+}

@@ -1,0 +1,29 @@
+/* AddRecipe.css */
+#recipeName,
+#ingredients,
+#tags,
+#instructions {
+  width: 50%; /* Set the width to 100% */
+  padding: 12px; /* Increase padding for more height */
+  font-size: 14px; /* Adjust font size */
+  border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+  height: fit-content;
+}
+
+#recipeName {
+  margin-bottom: 10px; /* Optional: Add margin at the bottom of recipeName */
+}
+
+/* Optional: Increase font size for labels */
+.addRecipe label {
+    display: block; /* Set label to block-level display */
+    margin-bottom: 5px; /* Add some space below the label */
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+.addRecipe {
+    margin-top: 5px;
+    text-align: center;
+}
+  
