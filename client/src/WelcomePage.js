@@ -1,18 +1,24 @@
-import { Link } from 'react-router-dom';
-import './WelcomePage.css'
+// WelcomePage.jsx
 
-const Home = () => {
-    return (
-        <div className='welcomePage'>
-            <p>This web application is all about recipes!<br/>
-                Time to get rid of all the old books and folders with those coffee stains,<br/>
-                join us for maximum comfort.<br/>
-                If you don't have an account yet, please click <Link to = "/register">here</Link> in order to create an account.<br/><br/>
-                Already have an account ? <Link to='/login'>LOGIN!</Link>
-            </p>
-           
+import { Link } from 'react-router-dom';
+import './WelcomePage.css';
+
+const WelcomePage = () => {
+  return (
+    <div className='welcomePage'>
+      <div className='content'>
+      <h1>Welcome to Recipe Central</h1>
+        <p>
+          Discover, create, and share your favorite recipes with the world. Say goodbye to old recipe books
+          and hello to a new era of cooking innovation.
+        </p>
+        <div className='cta'>
+          <Link to="/register" className='ctaButton'>Create an Account</Link>
+          <span className='ctaText'>Already have an account? <Link to='/login'>Login</Link></span>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Home;
+export default WelcomePage;

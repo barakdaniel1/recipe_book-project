@@ -1,4 +1,4 @@
-.welcomePage {
+/*.welcomePage {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -7,3 +7,57 @@
     margin-left: 15%;
     font-size: 20px;
 }
+*/
+/* WelcomePage.css */
+
+.welcomePage {
+    background-color: #E6F7FF; /* Light Blue Background */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content {
+    text-align: center;
+    max-width: 600px;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: #666;
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .cta {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ctaButton {
+    background-color: #007BFF;
+    color: #FFF;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ctaButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .ctaText {
+    margin-top: 10px;
+    color: #888;
+    font-size: 0.9em;
+  }
+  

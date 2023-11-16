@@ -36,39 +36,44 @@ const AddRecipe = ({userName, accessToken,recipes,setRecipes}) => {
         <div className='addRecipe'>
             <form onSubmit={handleAddRecipe}>
                 <label htmlFor='recipeName'>Recipe Name: </label>
-                <Textbox id='recipeName' 
-                        type='text' 
-                        placeholder='Recipe Name'
-                        varToChange={recipeName}
-                        onChange={setRecipeName}
-                        isTextArea={true}
-                /><br/>
+                <Textbox
+                    id='recipeName'
+                    type='text'
+                    placeholder='Recipe Name'
+                    varToChange={recipeName}
+                    onChange={setRecipeName}
+                    isTextArea={true}
+                /><br />
                 <label htmlFor='ingredients'>Ingredients: </label>
-                <Textbox id='ingredients' 
-                        type='text' 
-                        placeholder='Ingredients'
-                        varToChange={ingredients}
-                        onChange={setIngredients}
-                        isTextArea={true}
-                /><br/>
+                <Textbox
+                    id='ingredients'
+                    type='text'
+                    placeholder='Ingredients'
+                    varToChange={ingredients}
+                    onChange={setIngredients}
+                    isTextArea={true}
+                /><br />
                 <label htmlFor='instructions'>Instructions: </label>
-                <Textbox id='instructions' 
-                        type='text' 
-                        placeholder='Instructions'
-                        varToChange={instructions}
-                        onChange={setInstructions}
-                        isTextArea={true}
-                /><br/>
+                <Textbox
+                    id='instructions'
+                    type='text'
+                    placeholder='Instructions'
+                    varToChange={instructions}
+                    onChange={setInstructions}
+                    isTextArea={true}
+                /><br />
                 <label htmlFor='tags'>Tags: </label>
-                <Textbox id='tags' 
-                        type='text' 
-                        placeholder='Tags'
-                        varToChange={tags}
-                        onChange={setTags}
-                        isTextArea={true}
-                /><br/>
-                <Button type = 'submit'
-                        text = 'Add Recipe!'
+                <Textbox
+                    id='tags'
+                    type='text'
+                    placeholder='Tags'
+                    varToChange={tags}
+                    onChange={setTags}
+                    isTextArea={true}
+                /><br />
+                <Button
+                    type='submit'
+                    text='Add Recipe!'
                 />
             </form>
         </div>

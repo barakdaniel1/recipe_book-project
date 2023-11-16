@@ -1,29 +1,45 @@
 /* AddRecipe.css */
-#recipeName,
-#ingredients,
-#tags,
-#instructions {
-  width: 50%; /* Set the width to 100% */
-  padding: 12px; /* Increase padding for more height */
-  font-size: 14px; /* Adjust font size */
-  border-radius: 8px; /* Optional: Add border-radius for rounded corners */
-  height: fit-content;
-}
-
-#recipeName {
-  margin-bottom: 10px; /* Optional: Add margin at the bottom of recipeName */
-}
-
-/* Optional: Increase font size for labels */
-.addRecipe label {
-    display: block; /* Set label to block-level display */
-    margin-bottom: 5px; /* Add some space below the label */
-    font-size: 16px;
-    font-weight: bold;
-  }
 
 .addRecipe {
-    margin-top: 5px;
-    text-align: center;
+  background-color: #FFF;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-  
+
+.addRecipe form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addRecipe label {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #333;
+}
+
+.addRecipe textarea {
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical; /* Allow vertical resizing of textarea */
+}
+
+.addRecipe input[type="submit"] {
+  background-color: #007BFF;
+  color: #FFF;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.addRecipe input[type="submit"]:hover {
+  background-color: #0056b3;
+}

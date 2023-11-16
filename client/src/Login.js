@@ -28,20 +28,20 @@ const Login = ({setUserNameAPP, setAccessTokenAPP}) => {
     }
 
     return (
-        <>
         <div className="login">
-        <form onSubmit={handleLogin}>
-            <label htmlFor='username'>Username: </label>
-            <Textbox id = "username" type = "text" placeholder="Username" varToChange={userName} onChange={setUserName}/> <br/>
-            <label htmlFor='password'>Password: </label>
-            <Textbox id = 'password' type = "password" placeholder="Password" varToChange={password} onChange={setPassword}/>
-            <Button type = "submit" text="Login!"/>
-        </form>
+            <form onSubmit={handleLogin}>
+                <label htmlFor="username">Username: </label>
+                <Textbox id="username" type="text" placeholder="Username" varToChange={userName} onChange={setUserName} /> <br />
+                <label htmlFor="password">Password: </label>
+                <Textbox id="password" type="password" placeholder="Password" varToChange={password} onChange={setPassword} />
+                <Button type="submit" text="Login!" />
+            </form><br/>
+            <label className="register-label">Not a registered user? </label>
+            <label className="register-label">
+                <Link to="/register">Register here</Link>
+            </label>
         </div>
-        <label className = "register-label">Not a registered user? </label>
-        <label className='register-label'><Link to ="/register">Register here</Link></label>
-        </>
-    )
+    );
 }
 
 export default Login;

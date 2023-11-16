@@ -1,8 +1,12 @@
+/* Header.css */
+
 .header {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #007BFF; /* Header Background Color */
+    color: #FFF; /* Header Text Color */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 5%;
-    font-size: 40px;
+    padding: 20px;
+    font-size: 2em;
 }

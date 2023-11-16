@@ -30,7 +30,7 @@ const Register = () => {
         <label htmlFor='password'>Password: </label>
         <Textbox id = 'password' type="password" placeholder="Password" varToChange={password} onChange={setPassword}/>
         <Button type="submit" text="Register!" />
-      </form>
+      </form><br/>
       <div>Already have an account ? <Link to="/login">LOGIN!</Link></div>
     </div>
   );

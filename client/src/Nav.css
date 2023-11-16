@@ -1,36 +1,29 @@
-.nav {
-    background-color: wheat; /* Set the background color to wheat */
-    padding: 10px;
-    border-bottom: 1px solid #fcdebf; /* Border at the bottom */
-    margin-top: 10px;
-  }
-  
-  .nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex; /* Set the display to flex */
-  }
-  
-  .nav li {
-    display: inline;
-    margin-right: 10px;
-  }
-  
-  .nav a {
-    text-decoration: none;
-    color: #333; /* Dark text color */
-    font-weight: bold;
-    font-size: 16px;
-    transition: color 0.3s; /* Smooth color transition on hover */
-  }
+/* Nav.css */
 
-  .nav li:last-child {
-    margin-right: 0; /* Remove margin from last item */
-    margin-left: auto; /* Push the last item to the right */
-  }
-  
-  .nav a:hover {
-    color: #FF6347; /* Change color on hover (tomato red) */
-  }
-  
+.nav {
+  background-color: #333; /* Background color for the navigation */
+  padding: 10px;
+}
+
+.nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.nav li {
+  margin-right: 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #007BFF;
+}

@@ -1,21 +1,55 @@
+/* Login.css */
+
 .login {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #FFF;
+    max-width: 400px;
+    margin: 20px auto; /* Added margin to the top and centered horizontally */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login form {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3%;
-    margin-left: 8%;
+    flex-direction: column;
+}
+
+.login label {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+.login input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.login input[type="submit"] {
+    background-color: #007BFF;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
 .register-label {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2%;
-    margin-left: 5%;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #333;
 }
 
-  
-  
-  
+.register-label a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-label a:hover {
+    text-decoration: underline;
+}

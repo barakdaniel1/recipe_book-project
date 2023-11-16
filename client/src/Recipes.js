@@ -12,19 +12,19 @@ const Recipes = ({ userName, recipes }) => {
     const [matchingRecipes, setMatchingRecipes] = useState(recipes);
     const [searchRecipe, setSearchRecipe] = useState('');
     const [isActiveSearch, setIsActiveSearch] = useState(false);
-    const [searchCritiria,setSearchCritiria] = useState('recipename');
+    const [searchCriteria,setSearchCriteria] = useState('recipename');
 
     const filterRecipes = () => {
         setIsActiveSearch(!!searchRecipe); // Set isActiveSearch to true if there's a value in the textBox
         let newMatchingRecipes = [];
         console.log(recipes);
-        if(searchCritiria === 'recipename')
+        if(searchCriteria === 'recipename')
             newMatchingRecipes = recipes.filter((recipe) =>
                  recipe.recipename.toLowerCase().includes(searchRecipe.toLowerCase()));
         else {
             const searchArgs = searchRecipe.split(',');
             console.log(searchArgs);
-            if(searchCritiria === 'ingredients')
+            if(searchCriteria === 'ingredients')
                 newMatchingRecipes = 
                     recipes.filter( (recipe) => 
                         searchArgs.filter( ( searchArg) => recipe.ingredients.toLowerCase().includes(searchArg.toLowerCase())).length === searchArgs.length);
@@ -39,22 +39,19 @@ const Recipes = ({ userName, recipes }) => {
     }
 
     return (
-        <>
-            <SearchRecipe searchCritiria = {searchCritiria} 
-                          setSearchCritiria = {setSearchCritiria}
-                          searchRecipe = {searchRecipe} 
-                          setSearchRecipe = {setSearchRecipe}
-                          filterRecipes = {filterRecipes}
+        <div className="recipes">
+            <SearchRecipe
+                searchCriteria={searchCriteria}
+                setSearchCriteria={setSearchCriteria}
+                searchRecipe={searchRecipe}
+                setSearchRecipe={setSearchRecipe}
+                filterRecipes={filterRecipes}
             />
             <div className="recipesGallery">
-                {
-                    isActiveSearch && <RecipeLink recipes={matchingRecipes} userName={userName}/>
-                }
-                {
-                    !isActiveSearch && <RecipeLink recipes={recipes} userName={userName}/>
-                }
+                {isActiveSearch && <RecipeLink recipes={matchingRecipes} userName={userName} />}
+                {!isActiveSearch && <RecipeLink recipes={recipes} userName={userName} />}
             </div>
-        </>
+        </div>
     )
 }
 

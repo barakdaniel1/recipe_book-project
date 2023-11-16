@@ -1,4 +1,37 @@
+/* App.css */
+
 .app {
-    background-color: #FFE4B5;
+    background-color: #E6F7FF; /* Body Background Color */
     height: 100vh;
+    overflow-y: auto; /* Enable scroll when content exceeds viewport height */
+}
+
+/* Add the following style to remove default margin and padding */
+body, h1, h2, h3, p, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Add a global font style */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Styles for the Navigation component (assuming it has a 'nav' class) */
+.nav {
+    background-color: #333; /* Navigation Background Color */
+    color: #FFF; /* Navigation Text Color */
+    padding: 10px;
+}
+
+.nav a {
+    color: #FFF;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
 }
