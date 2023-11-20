@@ -15,9 +15,10 @@ const AddRecipe = ({userName, accessToken,recipes,setRecipes}) => {
             recipename: recipeName.replace(/\r?\n/g, '\n'), // Normalize line breaks
             ingredients: ingredients.replace(/\r?\n/g, '\n'),
             instructions: instructions.replace(/\r?\n/g, '\n'),
-            tags: tags.replace(/\r?\n/g, '\n')
+            tags: tags.replace(/\r?\n/g, '\n'),
+            image: image
           };
-        
+        console.log(recipe);
         const res = await addRecipe(userName,accessToken,recipe);
         if(res){
             const newRecipes = [...recipes,recipe];
@@ -27,10 +28,23 @@ const AddRecipe = ({userName, accessToken,recipes,setRecipes}) => {
         else console.log("ERROR ADDING RECIPE!");
     }
 
+    const handleImage = (e) => {
+        const file = e.target.files[0];
+
+        if(file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
     const [recipeName,setRecipeName] = useState('');
     const [ingredients,setIngredients] = useState('');
     const [instructions,setInstructions] = useState('');
     const [tags,setTags] = useState('');
+    const [image,setImage] = useState('');
 
     return (
         <div className='addRecipe'>
@@ -70,6 +84,13 @@ const AddRecipe = ({userName, accessToken,recipes,setRecipes}) => {
                     varToChange={tags}
                     onChange={setTags}
                     isTextArea={true}
+                /><br />
+                <label htmlFor='recipeImage'>Image: </label>
+                <input
+                    id='recipeImage'
+                    type='file'
+                    accept='image/*' // Allow only image files
+                    onChange={(e) => handleImage(e)} // Update the image state when a file is selected
                 /><br />
                 <Button
                     type='submit'

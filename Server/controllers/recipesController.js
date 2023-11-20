@@ -2,7 +2,6 @@ const User = require('../model/User');
 const {getUserByUserName_params} = require('./usefulFunctions');
 
 
-
 /*
 RECIPE NAME CANNOT BE CHANGED!!!!!!!
 */
@@ -25,12 +24,14 @@ const createRecipe = async (req,res) => {
         const ingredients = req.body.ingredients.replace(/\r?\n/g, '\n');
         const instructions = req.body.instructions.replace(/\r?\n/g, '\n');
         const tags = (req.body.tags || "").replace(/\r?\n/g, '\n');
+        const image = req.body.image;
 
         const newRecipe = {
             recipename: recipeName,
             ingredients: ingredients,
             instructions: instructions,
-            tags: tags
+            tags: tags,
+            image: image
         }
 
         //check if recipe already exists.

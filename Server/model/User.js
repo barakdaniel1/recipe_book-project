@@ -12,9 +12,13 @@ const recipeSchema = new Schema ({
   },
   instructions: {
     type: String,
-    require: true
+    required: true
   },
   tags: {
+    type: String,
+    required: false
+  },
+  image: {
     type: String,
     required: false
   }

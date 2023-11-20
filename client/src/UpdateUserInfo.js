@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Textbox from "./Textbox";
+import './UpdateUserInfo.css';
 import { useState } from "react";
 import { updateUserInfo } from "./api/usersAPI";
 

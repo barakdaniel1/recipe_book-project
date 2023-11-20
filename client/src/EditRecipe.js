@@ -28,9 +28,10 @@ const EditRecipe = ({editMode, setEditmode, editedIngredients, setEditedIngredie
                         varToChange={editedTags}
                         onChange={setEditedTags}
                         isTextArea={true}/><br/>
-                <Button type = "submit" text="apply!"/>
+                <Button type = "submit" text="apply!"/><br/>
+                <Button type= 'button' text ='Cancel' clickFunc={ () => setEditmode(!editMode)}/>
             </form>
-            <Button type= 'button' text ='Cancel' clickFunc={ () => setEditmode(!editMode)}/>
+            
         </div> 
     )
 }

@@ -24,7 +24,7 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({extended: false}));
 
 //This enables us to get information from JSON files. - Middleware
-app.use(express.json());
+app.use(express.json({limit: "50mb"}));
 
 //Serve static files - css, images.
 app.use(express.static("./public", {root: __dirname}))

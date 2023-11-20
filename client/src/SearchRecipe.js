@@ -1,6 +1,7 @@
 import Textbox from "./Textbox";
 import Button from "./Button";
 import DropList from "./DropList";
+import './SearchRecipe.css';
 
 const SearchRecipe = ({searchCriteria, setSearchCriteria, searchRecipe, 
                         setSearchRecipe, filterRecipes}) => {

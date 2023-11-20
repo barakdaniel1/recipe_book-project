@@ -6,13 +6,14 @@
 }
 
 .searchRecipe {
-    display: flex;
+    display: grid; /* Use grid layout */
+    grid-template-columns: auto auto auto auto; /* Create four columns */
+    gap: 10px; /* Add some space between columns */
     align-items: center;
     margin-bottom: 20px;
 }
 
 .searchRecipe label {
-    margin-right: 10px;
     font-size: 16px;
     color: #333;
 }
@@ -22,12 +23,10 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
-    flex-grow: 1;
 }
 
 .searchRecipe select {
     padding: 10px;
-    margin-left: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
@@ -43,6 +42,7 @@
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 10%;
 }
 
 .searchRecipe button:hover {
@@ -53,6 +53,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 /* Updated style for RecipeLink to make it a box with a hover effect */
