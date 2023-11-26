@@ -1,21 +1,36 @@
 import Button from './Button';
 import Textbox from './Textbox';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './ForgotPassword.css';
-
+import axios from 'axios';
 
 const ForgotPassword = () => {
     const [email,setEmail] = useState('');
-    const handleResetPassword = () => {
+    const navigate = useNavigate();
 
+    const handleResetPassword = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await axios.post('http://localhost:5000/resetPass', {
+                email: email
+            });
+            return navigate(`/resetPassword/${email}`);
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
+
     return (
         <div>
             <form onSubmit={handleResetPassword}>
+            <p className='info'>Type your Email to get a code.</p>
+            <p className='info'>Please update your password after putting the code you got in email.</p>
             <label htmlFor="email">Email: </label>
             <Textbox id = 'email' type="text" placeholder="Email" varToChange={email} onChange={setEmail}/>
-            <Button type="submit" text="Reset my passowrd!" />
+            <Button type="submit" text="Login!" />
             <label className="go-back-label">
                 <Link to="/login">Go back!</Link>
             </label>

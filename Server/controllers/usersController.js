@@ -7,7 +7,7 @@ const getAllUsers = async (req,res) => {
     const ret = await User.find();
     if(!ret) return res.status(204).json({"message": "No users found."}) // no content
 
-    res.status(200).json(ret);
+    return res.status(200).json(ret);
 }
 
 const deleteUser = async(req,res) => {
@@ -16,9 +16,9 @@ const deleteUser = async(req,res) => {
         const foundUser = await getUserByUserName(req,res);
         if(!foundUser) return res.status(400).json({"message": "User not found."})
         const deleted = await User.deleteOne({"username": foundUser.username});
-        res.status(200).json({"message": `username ${deleted.username} has been deleted successfully!`});
+        return res.status(200).json({"message": `username ${deleted.username} has been deleted successfully!`});
     } catch (err) {
-        res.status(400).json({"message": err});
+        return res.status(400).json({"message": err});
     }
     
 }
@@ -41,7 +41,7 @@ const updateUser = async(req,res) => {
         
 
         const result = await foundUser.save();
-        res.json(result);
+        return res.json(result);
     } catch (err) {
        console.log(err.message);
     }
@@ -55,8 +55,8 @@ const getUser = async (req,res) => {
     if(!req.params?.username) return res.status(400).json({"message": "Username is required"});
     try{
         const foundUser = await getUserByUserName_params(userName);
-        if(!foundUser) res.status(204).json({"message": "Username doesn't exist"});
-        res.json(foundUser);
+        if(!foundUser) return res.status(204).json({"message": "Username doesn't exist"});
+        return res.json(foundUser);
     }
     catch (err) {
         return res.status(400).json({"message": err.message})

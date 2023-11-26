@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 const verifyJWT = require('./middleware/verifyJWT');
 const errHandler = require('./middleware/errorHandler');
-const PORT = process.env.port || 5000;
+const PORT = process.env.port;
 
 //Connect to MongoDB.
 connectDB();
@@ -38,6 +38,7 @@ app.use("/login",require('./routes/login'));
 app.use("/logout",require('./routes/logout'));
 app.use("/refresh",require('./routes/refresh'));
 app.use("/register",require('./routes/register'));
+app.use("/resetPass", require('./routes/resetPass'));
 
 //every route after verifyJWT will require validation of the token.
 app.use(verifyJWT);
