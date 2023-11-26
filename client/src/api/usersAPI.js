@@ -20,10 +20,10 @@ export const loginUser = async (userName, password) => {
     }
 }
 
-export const updateUserInfo = async(userName, accessToken, newPassword) => {
+export const updateUserInfo = async(userName, accessToken, newPassword, newEmail) => {
     try {
         const res = await axios.put('http://localhost:5000/users',
-                    {username: userName, password: newPassword}, 
+                    {username: userName, password: newPassword, email: newEmail}, 
                     {headers: {Authorization: `Bearer ${accessToken}`}});
         return res;
     }

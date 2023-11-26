@@ -26,12 +26,19 @@ const deleteUser = async(req,res) => {
 // USERNAME CANNOT BE UPDATED!
 const updateUser = async(req,res) => {
     if(!req.body?.username) return res.status(400).json({"message": "username is required."}) // bad request
-
+    
     try {
         const foundUser = await getUserByUserName(req,res);
         if(!foundUser) return res.status(400).json({"message": "User not found."});
+        
         //update user information
-        foundUser.password = await bcrypt.hash(req.body.password,10);
+        //if not blank!
+        
+        if(req.body.password)
+            foundUser.password = await bcrypt.hash(req.body.password,10);
+        if(req.body.email)
+            foundUser.email = req.body.email;
+        
 
         const result = await foundUser.save();
         res.json(result);

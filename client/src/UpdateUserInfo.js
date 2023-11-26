@@ -6,14 +6,15 @@ import { updateUserInfo } from "./api/usersAPI";
 
 const UpdateUserInfo = ({userName, accessToken}) => {
     const [password,setPassword] = useState('');
+    const [email,setEmail] = useState('');
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const res = await updateUserInfo(userName,accessToken,password);
+        const res = await updateUserInfo(userName,accessToken,password, email);
         if(res) {
-            console.log("SUCCESSFULLY CHANGED PASSWORD!");
+            console.log("SUCCESSFULLY CHANGED INFO!");
         }
-        else console.log("ERROR CHANGING PASSWORD");
+        else console.log("ERROR CHANGING INFO");
     }
 
     return (
@@ -24,6 +25,13 @@ const UpdateUserInfo = ({userName, accessToken}) => {
                      placeholder='New Password'
                      varToChange={password}
                      onChange={setPassword}
+            /><br/>
+            <label htmlFor='updateEmail'>New Email: </label>
+            <Textbox id = 'updateEmail' 
+                     type='text'
+                     placeholder='New Email'
+                     varToChange={email}
+                     onChange={setEmail}
             /><br/>
             <Button type = 'submit' 
                     text = 'update!'

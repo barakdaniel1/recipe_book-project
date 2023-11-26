@@ -12,6 +12,7 @@ import { useState } from 'react';
 import {Route, Routes } from 'react-router-dom';
 import UpdateUserInfo from './UpdateUserInfo';
 import AddRecipe from './AddRecipe';
+import ForgotPassword from './ForgotPassword';
 
 function App() {
   const [userNameAPP,setUserNameAPP] = useState('');
@@ -27,6 +28,7 @@ function App() {
         <Route index path = '/' element={<WelcomePage/>}/>
         <Route path='/login' element={<Login setUserNameAPP={setUserNameAPP} setAccessTokenAPP={setAccessTokenAPP}/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/forgot-password' element ={<ForgotPassword />}/>
         <Route path='/users/:username' element={<Home userName = {userNameAPP} accessToken = {accessTokenAPP} setRecipesAPP = {setRecipesAPP}/>}/>
         <Route path='/users/:username/recipes' element={<Recipes userName = {userNameAPP} recipes={recipesAPP} />}/>
         <Route path = '/users/:username/update' element={<UpdateUserInfo userName={userNameAPP} accessToken={accessTokenAPP}/>} />

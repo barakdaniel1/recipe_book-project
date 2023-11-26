@@ -35,11 +35,16 @@ const Login = ({setUserNameAPP, setAccessTokenAPP}) => {
                 <label htmlFor="password">Password: </label>
                 <Textbox id="password" type="password" placeholder="Password" varToChange={password} onChange={setPassword} />
                 <Button type="submit" text="Login!" />
-            </form><br/>
+            </form>
+            <label className="register-label">Forgot password ? </label>
+            <label className="register-label">
+                <Link to="/forgot-password">Click here</Link>
+            </label>
             <label className="register-label">Not a registered user? </label>
             <label className="register-label">
                 <Link to="/register">Register here</Link>
             </label>
+            
         </div>
     );
 }
