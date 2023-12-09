@@ -5,7 +5,7 @@ import './Recipe.css';
 import RecipeInfo from "./RecipeInfo";
 import EditRecipe from "./EditRecipe";
 
-const Recipe = ({userName, accessToken,recipes ,setRecipes}) => {
+const Recipe = ({recipes ,setRecipes}) => {
     const {recipename} = useParams();
     const navigate = useNavigate();
     const fixed_recipe_name = recipename.replace(/_/g, ' ');
@@ -14,6 +14,8 @@ const Recipe = ({userName, accessToken,recipes ,setRecipes}) => {
     const [editedIngredients,setEditedIngredients] = useState('');
     const [editedInstructions,setEditedInstructions] = useState('');
     const [editedTags,setEditedTags] = useState('');
+    const userName = localStorage.getItem('username');
+    const accessToken = localStorage.getItem('accessToken');
     
     useEffect (()=>{
         const fetchRecipe = async () =>{

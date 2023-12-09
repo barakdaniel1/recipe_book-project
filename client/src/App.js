@@ -16,27 +16,26 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 
 function App() {
-  const [userNameAPP,setUserNameAPP] = useState('');
-  const [accessTokenAPP,setAccessTokenAPP] = useState('');
+  
   const [recipesAPP,setRecipesAPP] = useState('');
 
   return (
 
     <div className="app">
       <Header/>
-      { userNameAPP && <Nav userName={userNameAPP}/>}
+      { localStorage.getItem('username') && <Nav userName={localStorage.getItem('username')}/>}
        <Routes>
         <Route index path = '/' element={<WelcomePage/>}/>
-        <Route path='/login' element={<Login setUserNameAPP={setUserNameAPP} setAccessTokenAPP={setAccessTokenAPP}/>}/>
-        <Route path='/register' element={<Register/>}/>
-        <Route path='/forgot-password' element ={<ForgotPassword />}/>
-        <Route path='/resetPassword/:email' element ={<ResetPassword setUserNameAPP={setUserNameAPP} setAccessTokenAPP={setAccessTokenAPP}/>}/>
-        <Route path='/users/:username' element={<Home userName = {userNameAPP} accessToken = {accessTokenAPP} setRecipesAPP = {setRecipesAPP}/>}/>
-        <Route path='/users/:username/recipes' element={<Recipes userName = {userNameAPP} recipes={recipesAPP} />}/>
-        <Route path = '/users/:username/update' element={<UpdateUserInfo userName={userNameAPP} accessToken={accessTokenAPP}/>} />
-        <Route path = 'users/:username/add_recipe' element={<AddRecipe userName={userNameAPP} accessToken={accessTokenAPP} recipes = {recipesAPP} setRecipes={setRecipesAPP}/>} />
-        <Route path ='users/:username/recipes/:recipename' element = {<Recipe userName={userNameAPP} accessToken={accessTokenAPP} recipes = {recipesAPP} setRecipes={setRecipesAPP}/>} />
-        <Route path = 'users/:username/logout' element={<Logout setUserNameAPP={setUserNameAPP} setAccessTokenAPP={setAccessTokenAPP}/>}/>
+        <Route path = '/login' element={<Login />}/>
+        <Route path = '/register' element={<Register/>}/>
+        <Route path = '/forgot-password' element ={<ForgotPassword />}/>
+        <Route path = '/resetPassword/:email' element ={<ResetPassword />}/>
+        <Route path = '/users/:username' element={<Home setRecipesAPP = {setRecipesAPP}/>}/>
+        <Route path = '/users/:username/recipes' element={<Recipes recipes={recipesAPP} />}/>
+        <Route path = '/users/:username/update' element={<UpdateUserInfo />} />
+        <Route path = '/users/:username/add_recipe' element={<AddRecipe recipes = {recipesAPP} setRecipes={setRecipesAPP}/>} />
+        <Route path = '/users/:username/recipes/:recipename' element = {<Recipe recipes = {recipesAPP} setRecipes={setRecipesAPP}/>} />
+        <Route path = '/users/:username/logout' element={<Logout />}/>
        </Routes>
     </div>
 

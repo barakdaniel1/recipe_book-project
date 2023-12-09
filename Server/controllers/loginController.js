@@ -48,11 +48,12 @@ const handleLogInController = async (req, res) => {
         console.log(result);
         console.log(roles);
 
-        //create a cookie containing the new refresh token.
-        res.cookie('jwt',refreshToken,{httpOnly: true, maxAge: 24 * 60 * 60 * 1000, sameSite: 'None',secure: true}) 
+        //create a cookie containing the new access token.
+        res.cookie('jwt',accessToken,{httpOnly: true, maxAge: 15 * 60 * 1000, sameSite: 'None',secure: true}) 
         
+        const expires = Date.now() + 15*60*1000; // 15 min accessToken.
         //send the roles and the access token to the user.
-        res.status(201).json({ roles, accessToken });
+        res.status(201).json({ roles, accessToken, expires});
     }
     else 
         res.status(401).json({'message': 'Password is incorrect'});

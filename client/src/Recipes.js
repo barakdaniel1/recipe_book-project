@@ -4,16 +4,16 @@ import SearchRecipe from "./SearchRecipe";
 import RecipeLink from "./RecipeLink";
 
 
-const Recipes = ({ userName, recipes }) => {
+const Recipes = ({ recipes }) => {
     const [matchingRecipes, setMatchingRecipes] = useState(recipes);
     const [searchRecipe, setSearchRecipe] = useState('');
     const [isActiveSearch, setIsActiveSearch] = useState(false);
     const [searchCriteria,setSearchCriteria] = useState('recipename');
+    const userName = localStorage.getItem('username');
 
     const filterRecipes = () => {
         setIsActiveSearch(!!searchRecipe); // Set isActiveSearch to true if there's a value in the textBox
         let newMatchingRecipes = [];
-        console.log(recipes);
         if(searchCriteria === 'recipename')
             newMatchingRecipes = recipes.filter((recipe) =>
                  recipe.recipename.toLowerCase().includes(searchRecipe.toLowerCase()));

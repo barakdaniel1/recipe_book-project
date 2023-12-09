@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import './Nav.css';
 
-const Nav = ({userName}) => {
-    const home = `/users/${userName}`;
+const Nav = () => {
+    const home = `/users/${localStorage.getItem('username')}`;
     return (
         <nav className="nav">
             <ul>

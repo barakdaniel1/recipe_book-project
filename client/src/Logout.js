@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
 import { logoutUser } from "./api/usersAPI";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-const Logout = ({setUserNameAPP,setAccessTokenAPP}) => {
+const Logout = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -13,8 +12,7 @@ const Logout = ({setUserNameAPP,setAccessTokenAPP}) => {
 
 
     const logOut = async() =>{
-        setAccessTokenAPP('');
-        setUserNameAPP('');
+        localStorage.clear();
         await logoutUser();
     }
 

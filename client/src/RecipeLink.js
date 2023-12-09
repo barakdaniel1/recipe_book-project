@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
-const RecipeLink = ({recipes, userName}) =>{
+const RecipeLink = ({recipes}) =>{
+    const userName = localStorage.getItem('username');
+    
     return (
         recipes.length > 0 && recipes.map((recipe, index) => {
             const fixed_recipe_name = recipe.recipename.replace(/ /g, '_');

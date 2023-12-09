@@ -5,8 +5,10 @@ import { addRecipe } from './api/recipesAPI';
 import { useNavigate } from 'react-router-dom';
 import './AddRecipe.css';
 
-const AddRecipe = ({userName, accessToken,recipes,setRecipes}) => {
+const AddRecipe = ({recipes,setRecipes}) => {
     const navigate = useNavigate();
+    const userName = localStorage.getItem('username');
+    const accessToken = localStorage.getItem('accessToken');
 
     const handleAddRecipe = async (e) => {
         e.preventDefault();
@@ -18,7 +20,7 @@ const AddRecipe = ({userName, accessToken,recipes,setRecipes}) => {
             tags: tags.replace(/\r?\n/g, '\n'),
             image: image
           };
-        console.log(recipe);
+
         const res = await addRecipe(userName,accessToken,recipe);
         if(res){
             const newRecipes = [...recipes,recipe];

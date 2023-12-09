@@ -4,7 +4,7 @@ import { useState } from 'react';
 import {useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const ResetPassword = ({setUserNameAPP,setAccessTokenAPP}) => {
+const ResetPassword = () => {
     const [code,setCode] = useState('');
     const { email } = useParams();
     const navigate = useNavigate();
@@ -21,8 +21,8 @@ const ResetPassword = ({setUserNameAPP,setAccessTokenAPP}) => {
                 const accessToken = res.data.accessToken;
 
                 if(code === resetCode.toString()){
-                    setUserNameAPP(username);
-                    setAccessTokenAPP(accessToken);
+                    localStorage.setItem('username',username);
+                    localStorage.setItem('accessToken',accessToken);
                     return navigate(`/users/${username}`);
                 }
             }

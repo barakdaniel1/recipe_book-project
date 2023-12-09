@@ -4,10 +4,12 @@ import './UpdateUserInfo.css';
 import { useState } from "react";
 import { updateUserInfo } from "./api/usersAPI";
 
-const UpdateUserInfo = ({userName, accessToken}) => {
+const UpdateUserInfo = () => {
     const [password,setPassword] = useState('');
     const [email,setEmail] = useState('');
-
+    const userName = localStorage.getItem('username');
+    const accessToken = localStorage.getItem('accessToken');
+     
     const handleUpdate = async (e) => {
         e.preventDefault();
         const res = await updateUserInfo(userName,accessToken,password, email);

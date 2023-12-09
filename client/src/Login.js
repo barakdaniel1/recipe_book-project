@@ -5,7 +5,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {useState} from 'react';
 import {loginUser} from './api/usersAPI';
 
-const Login = ({setUserNameAPP, setAccessTokenAPP}) => {
+const Login = () => {
     const [userName,setUserName] = useState('');
     const [password,setPassword] = useState('');
     let navigate = useNavigate();
@@ -17,8 +17,9 @@ const Login = ({setUserNameAPP, setAccessTokenAPP}) => {
             const res = await loginUser(userName,password);
             console.log(res);
             if(res){
-                setUserNameAPP(userName);
-                setAccessTokenAPP(res.data.accessToken);
+                localStorage.setItem('username', userName);
+                localStorage.setItem('accessToken',res.data.accessToken);
+                localStorage.setItem('expires', res.data.expires);
                 return navigate(`/users/${userName}`);
             }
         }

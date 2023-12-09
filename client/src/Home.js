@@ -2,11 +2,14 @@ import {useEffect} from 'react';
 import './Home.css';
 import { getRecipes } from './api/recipesAPI';
 
-const Home = ({userName,accessToken,setRecipesAPP}) =>{
+const Home = ({setRecipesAPP}) =>{
     
     useEffect (()=>{
         const fetchRecipes = async () =>{
             try {
+                const userName = localStorage.getItem('username');
+                const accessToken = localStorage.getItem('accessToken');
+
                 const res = await getRecipes(userName,accessToken);
                 if(res) setRecipesAPP(res);
             } catch (err) {
