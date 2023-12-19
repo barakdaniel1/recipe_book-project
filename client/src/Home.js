@@ -1,9 +1,10 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import './Home.css';
 import { getRecipes } from './api/recipesAPI';
 
 const Home = ({setRecipesAPP}) =>{
-    
+    const [errorMSG, setErrorMSG] = useState('');
+
     useEffect (()=>{
         const fetchRecipes = async () =>{
             try {
@@ -13,7 +14,7 @@ const Home = ({setRecipesAPP}) =>{
                 const res = await getRecipes(userName,accessToken);
                 if(res) setRecipesAPP(res);
             } catch (err) {
-                console.log(err);
+                setErrorMSG(err.message);
             }
         }
         fetchRecipes();     

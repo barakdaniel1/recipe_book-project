@@ -4,6 +4,7 @@ import Button from "./Button";
 const EditRecipe = ({editMode, setEditmode, editedIngredients, setEditedIngredients,
                         editedInstructions, setEditedInstructions, editedTags,setEditedTags,
                             handleEditPost}) => {
+
     return(
         <div className="recipe">
             <form onSubmit={handleEditPost}>
@@ -28,7 +29,7 @@ const EditRecipe = ({editMode, setEditmode, editedIngredients, setEditedIngredie
                         varToChange={editedTags}
                         onChange={setEditedTags}
                         isTextArea={true}/><br/>
-                <Button type = "submit" text="apply!"/><br/>
+                <Button type = "submit" text="Apply!"/><br/>
                 <Button type= 'button' text ='Cancel' clickFunc={ () => setEditmode(!editMode)}/>
             </form>
             

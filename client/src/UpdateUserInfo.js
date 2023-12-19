@@ -1,5 +1,7 @@
 import Button from "./Button";
 import Textbox from "./Textbox";
+import Success from "./Success";
+import Error from "./Error";
 import './UpdateUserInfo.css';
 import { useState } from "react";
 import { updateUserInfo } from "./api/usersAPI";
@@ -7,16 +9,23 @@ import { updateUserInfo } from "./api/usersAPI";
 const UpdateUserInfo = () => {
     const [password,setPassword] = useState('');
     const [email,setEmail] = useState('');
+    const [successMSG,setSuccessMSG] = useState('');
+    const [errorMSG,setErrorMSG] = useState('');
     const userName = localStorage.getItem('username');
     const accessToken = localStorage.getItem('accessToken');
      
     const handleUpdate = async (e) => {
         e.preventDefault();
-        const res = await updateUserInfo(userName,accessToken,password, email);
-        if(res) {
-            console.log("SUCCESSFULLY CHANGED INFO!");
+        try{
+            const res = await updateUserInfo(userName,accessToken,password, email);
+            setSuccessMSG("Info updated successfully!");
+            setErrorMSG('');
         }
-        else console.log("ERROR CHANGING INFO");
+        catch (err) {
+            setErrorMSG(err.message);
+            setSuccessMSG('');
+        }
+       
     }
 
     return (
@@ -36,8 +45,10 @@ const UpdateUserInfo = () => {
                      onChange={setEmail}
             /><br/>
             <Button type = 'submit' 
-                    text = 'update!'
+                    text = 'Update!'
             />
+            {successMSG && <Success msg = {successMSG} />}
+            {errorMSG && <Error msg = {errorMSG} />}
         </form>
     )
 }

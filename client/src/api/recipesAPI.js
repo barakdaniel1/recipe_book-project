@@ -7,7 +7,7 @@ export const getRecipes = async (userName,accessToken) => {
         return res.data;
     }
     catch (err) {
-        console.log(err)
+        throw new Error(err.response.data.message);
     }
 }
 
@@ -17,7 +17,7 @@ export const addRecipe = async (userName, accessToken, recipe) => {
                         ,{headers:{Authorization: `Bearer ${accessToken}`}});
         return res;
     } catch (err){
-        console.log(err);
+        throw new Error(err.response.data.message);
     }
             
 }
@@ -29,7 +29,7 @@ export const getRecipe = async (userName, accessToken, recipename) => {
         return res.data;
     }
     catch (err){
-        console.log(err);
+        throw new Error(err.response.data.message);
     }
 }
 
@@ -40,7 +40,7 @@ export const editRecipe = async (userName, accessToken, editedRecipe) => {
                                          {headers: {Authorization: `Bearer ${accessToken}`}});
         return res.data;        
     } catch (err) {
-        console.log(err);
+        throw new Error(err.response.data.message);
     }
 }
 
@@ -52,7 +52,7 @@ export const deleteRecipe = async (userName,accessToken,recipe_to_delete) => {
         return res.data;
     }
     catch (err) {
-        console.log(err);
+        throw new Error(err.response.data.message);
     }
 }
 

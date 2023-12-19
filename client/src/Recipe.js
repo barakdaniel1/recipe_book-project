@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import './Recipe.css';
 import RecipeInfo from "./RecipeInfo";
 import EditRecipe from "./EditRecipe";
+import Error from './Error';
+import Success from './Success';
 
 const Recipe = ({recipes ,setRecipes}) => {
     const {recipename} = useParams();
@@ -14,6 +16,8 @@ const Recipe = ({recipes ,setRecipes}) => {
     const [editedIngredients,setEditedIngredients] = useState('');
     const [editedInstructions,setEditedInstructions] = useState('');
     const [editedTags,setEditedTags] = useState('');
+    const [errorMSG, setErrorMSG] = useState('');
+    const [sucessMSG,setSuccessMSG] = useState('');
     const userName = localStorage.getItem('username');
     const accessToken = localStorage.getItem('accessToken');
     
@@ -28,7 +32,7 @@ const Recipe = ({recipes ,setRecipes}) => {
                     setEditedTags(res.tags);
                 }
             } catch (err) {
-                console.log(err);
+                setErrorMSG(err.message);
             }
         }
         fetchRecipe();     
@@ -43,30 +47,45 @@ const Recipe = ({recipes ,setRecipes}) => {
             instructions: editedInstructions,
             tags: editedTags
         }
-     
-        const res = await editRecipe(userName,accessToken,editedRecipe);
-        if(res) {
-            setRecipe(editedRecipe);
-            setRecipes(recipes.map(
-                        (recipe) =>     
-                            recipe.recipename === editedRecipe.recipename ? 
-                                editedRecipe : recipe));
+        
+        try {
+            const res = await editRecipe(userName,accessToken,editedRecipe);
+            if(res) {
+                setErrorMSG('');
+                setSuccessMSG("Recipe updated successfully!");
+                setRecipe(editedRecipe);
+                setRecipes(recipes.map(
+                            (recipe) =>     
+                                recipe.recipename === editedRecipe.recipename ? 
+                                    editedRecipe : recipe));
+            }
         }
-        else console.log("ERROR EDITING RECIPE");
+        catch (err) {
+             setErrorMSG(err.message);
+             setSuccessMSG('');
+        }
     }
 
     const handleDelete = async () =>{
-        const res = await deleteRecipe(userName,accessToken,recipe);
-        if(res){
-            const newRecipes = recipes.filter((curr_recipe) => curr_recipe.recipename !== recipe.recipename);
-            setRecipes(newRecipes);
-            navigate(`/users/${userName}/recipes`);
+        try{
+            const res = await deleteRecipe(userName,accessToken,recipe);
+            if(res){
+                setErrorMSG('');
+                const newRecipes = recipes.filter((curr_recipe) => curr_recipe.recipename !== recipe.recipename);
+                setRecipes(newRecipes);
+                navigate(`/users/${userName}/recipes`);
+            }
         }
-        else console.log("ERROR DELETING RECIPE");
+        catch (err) {
+            setErrorMSG(err.message)
+        }
     }
 
     return (
-        recipe && editMode ? 
+        <div>
+        {errorMSG && <Error msg = {errorMSG} />}
+        {sucessMSG && <Success msg = {sucessMSG} />}
+        {recipe && editMode ? 
                                 <EditRecipe editMode={editMode} 
                                             setEditmode = {setEditmode} 
                                             editedIngredients = {editedIngredients}
@@ -84,7 +103,8 @@ const Recipe = ({recipes ,setRecipes}) => {
                                             setEditmode={setEditmode}
                                             handleDelete={handleDelete}
                                             recipe={recipe}
-                                />
+                                />}
+    </div>
     );
 }
 

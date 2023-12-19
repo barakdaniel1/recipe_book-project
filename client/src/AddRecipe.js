@@ -1,5 +1,6 @@
 import Textbox from './Textbox';
 import Button from './Button';
+import Error from './Error';
 import { useState } from 'react';
 import { addRecipe } from './api/recipesAPI';
 import { useNavigate } from 'react-router-dom';
@@ -20,14 +21,19 @@ const AddRecipe = ({recipes,setRecipes}) => {
             tags: tags.replace(/\r?\n/g, '\n'),
             image: image
           };
-
-        const res = await addRecipe(userName,accessToken,recipe);
-        if(res){
-            const newRecipes = [...recipes,recipe];
-            setRecipes(newRecipes);
-            navigate(`/users/${userName}/recipes`);
+        
+        try {
+            const res = await addRecipe(userName,accessToken,recipe);
+            if(res){
+                setErrorMSG('');
+                const newRecipes = [...recipes,recipe];
+                setRecipes(newRecipes);
+                navigate(`/users/${userName}/recipes`);
+            }
         }
-        else console.log("ERROR ADDING RECIPE!");
+        catch (err) {
+            setErrorMSG(err.message);
+        } 
     }
 
     const handleImage = (e) => {
@@ -47,6 +53,7 @@ const AddRecipe = ({recipes,setRecipes}) => {
     const [instructions,setInstructions] = useState('');
     const [tags,setTags] = useState('');
     const [image,setImage] = useState('');
+    const [errorMSG,setErrorMSG] = useState('');
 
     return (
         <div className='addRecipe'>
@@ -98,6 +105,7 @@ const AddRecipe = ({recipes,setRecipes}) => {
                     type='submit'
                     text='Add Recipe!'
                 />
+                {errorMSG && <Error msg = {errorMSG} />}
             </form>
         </div>
     )

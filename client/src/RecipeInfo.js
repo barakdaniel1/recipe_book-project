@@ -1,5 +1,5 @@
 import Button from "./Button";
-import "./RecipeInfo.css"; // Import your CSS file
+import "./RecipeInfo.css";
 
 const RecipeInfo = ({ editMode, setEditmode, handleDelete, recipe }) => {
     const base64Image = recipe.image;

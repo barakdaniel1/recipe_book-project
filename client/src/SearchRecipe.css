@@ -50,9 +50,10 @@
 
 /* Add this style to make the toggleDiv more readable */
 .toggleDiv {
-    font-size: 14px;
+    font-size: 15px;
     color: #777;
     margin-top: 10px;
+    margin-left: 4%;
 }
 
 .searchDiv .parent button {
