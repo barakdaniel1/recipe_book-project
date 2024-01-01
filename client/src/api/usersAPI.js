@@ -1,9 +1,12 @@
 import axios from 'axios';
 
+const URL = process.env.NODE_ENV === 'production' ? "https://recipe_book-api.onredner.com"
+            : 'http://localhost:5000'
+
 export const registerUser = async (userName, password, email) => {
 
     try {
-        const res = await axios.post('http://localhost:5000/register',{username:userName, password: password, email: email});
+        const res = await axios.post(`${URL}/register`,{username:userName, password: password, email: email});
     }
     catch (err) {
       return err;
@@ -12,7 +15,7 @@ export const registerUser = async (userName, password, email) => {
 
 export const logoutUser = async () => {
     try {
-        const res = await axios.get('http://localhost:5000/logout');
+        const res = await axios.get(`${URL}/logout`);
         return res;
     }
     catch (err) {
@@ -22,7 +25,7 @@ export const logoutUser = async () => {
 
 export const loginUser = async (userName, password) => {
     try {
-        const res = await axios.post('http://localhost:5000/login', {username: userName, password: password});
+        const res = await axios.post(`${URL}/login`, {username: userName, password: password});
         return res;
     }
     catch (err) {
@@ -32,7 +35,7 @@ export const loginUser = async (userName, password) => {
 
 export const updateUserInfo = async(userName, accessToken, newPassword, newEmail) => {
     try {
-        const res = await axios.put('http://localhost:5000/users',
+        const res = await axios.put(`${URL}/users`,
                     {username: userName, password: newPassword, email: newEmail}, 
                     {headers: {Authorization: `Bearer ${accessToken}`}});
         return res;
@@ -44,7 +47,7 @@ export const updateUserInfo = async(userName, accessToken, newPassword, newEmail
 
 export const resetPass = async (email) => {
     try {
-        const res = await axios.post('http://localhost:5000/resetPass', {
+        const res = await axios.post(`${URL}/resetPass`, {
             email: email
         });
         return res;
@@ -56,7 +59,7 @@ export const resetPass = async (email) => {
 
 export const checkResetCode = async (code, email) =>{
     try{
-        const res = await axios.get(`http://localhost:5000/resetPass/${email}`);
+        const res = await axios.get(`${URL}/resetPass/${email}`);
                 
         if(res) {
             const username = res.data.username;
