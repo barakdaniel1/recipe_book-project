@@ -2,7 +2,7 @@ import Textbox from './Textbox';
 import Button from './Button';
 import { useState } from 'react';
 import {useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { checkResetCode } from './api/usersAPI';
 
 const ResetPassword = () => {
     const [code,setCode] = useState('');
@@ -13,19 +13,8 @@ const ResetPassword = () => {
         e.preventDefault();
 
         try{
-            const res = await axios.get(`http://localhost:5000/resetPass/${email}`);
-            
-            if(res) {
-                const username = res.data.username;
-                const resetCode = res.data.code;
-                const accessToken = res.data.accessToken;
-
-                if(code === resetCode.toString()){
-                    localStorage.setItem('username',username);
-                    localStorage.setItem('accessToken',accessToken);
-                    return navigate(`/users/${username}`);
-                }
-            }
+            const username = await checkResetCode(code, email);
+            return navigate(`/users/${username}`);
         }
         catch (err) {
             console.log(err);

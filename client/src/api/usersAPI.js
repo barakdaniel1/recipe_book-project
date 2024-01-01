@@ -41,3 +41,36 @@ export const updateUserInfo = async(userName, accessToken, newPassword, newEmail
         throw new Error(err.response.data.message);
     }
 }
+
+export const resetPass = async (email) => {
+    try {
+        const res = await axios.post('http://localhost:5000/resetPass', {
+            email: email
+        });
+        return res;
+    }
+    catch (err) {
+        throw new Error(err.response.data.message);
+    }
+}
+
+export const checkResetCode = async (code, email) =>{
+    try{
+        const res = await axios.get(`http://localhost:5000/resetPass/${email}`);
+                
+        if(res) {
+            const username = res.data.username;
+            const resetCode = res.data.code;
+            const accessToken = res.data.accessToken;
+
+            if(code === resetCode.toString()){
+                localStorage.setItem('username',username);
+                localStorage.setItem('accessToken',accessToken);
+                return username;
+            }
+        }
+    }
+    catch (err) {
+        throw new Error(err.response.data.message);
+    }
+}

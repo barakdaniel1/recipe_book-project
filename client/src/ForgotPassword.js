@@ -3,7 +3,7 @@ import Textbox from './Textbox';
 import { useState } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import './ForgotPassword.css';
-import axios from 'axios';
+import { resetPass } from './api/usersAPI';
 
 const ForgotPassword = () => {
     const [email,setEmail] = useState('');
@@ -13,9 +13,7 @@ const ForgotPassword = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post('http://localhost:5000/resetPass', {
-                email: email
-            });
+            const res = await resetPass(email);
             return navigate(`/resetPassword/${email}`);
         }
         catch (err) {
