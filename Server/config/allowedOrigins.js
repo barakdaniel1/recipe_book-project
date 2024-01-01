@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'https://recipe_book.onredner.com',
+    'https://recipe-book-v0el.onrender.com/',
     'http://localhost:3000'
 ]
 
