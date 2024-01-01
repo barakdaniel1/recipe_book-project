@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = process.env.NODE_ENV === 'production' ? "https://recipe_book-api.onredner.com"
+const URL = process.env.NODE_ENV === 'production' ? "https://recipe-book-api-3nma.onrender.com"
             : 'http://localhost:5000'
 
 export const registerUser = async (userName, password, email) => {
