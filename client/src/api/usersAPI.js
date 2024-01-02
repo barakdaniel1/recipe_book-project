@@ -6,7 +6,7 @@ const URL = process.env.NODE_ENV === 'production' ? "https://recipe-book-api-3nm
 export const registerUser = async (userName, password, email) => {
 
     try {
-        const res = await axios.post(`${URL}/register`,{username:userName, password: password, email: email});
+        const res = await axios.post(`${URL}/register`,{username:userName, password: password, email: email}, {withCredentials: true});
     }
     catch (err) {
       return err;
@@ -15,7 +15,7 @@ export const registerUser = async (userName, password, email) => {
 
 export const logoutUser = async () => {
     try {
-        const res = await axios.get(`${URL}/logout`);
+        const res = await axios.get(`${URL}/logout`, {withCredentials: true});
         return res;
     }
     catch (err) {
@@ -25,7 +25,7 @@ export const logoutUser = async () => {
 
 export const loginUser = async (userName, password) => {
     try {
-        const res = await axios.post(`${URL}/login`, {username: userName, password: password});
+        const res = await axios.post(`${URL}/login`, {username: userName, password: password}, {withCredentials: true});
         return res;
     }
     catch (err) {
@@ -37,7 +37,8 @@ export const updateUserInfo = async(userName, accessToken, newPassword, newEmail
     try {
         const res = await axios.put(`${URL}/users`,
                     {username: userName, password: newPassword, email: newEmail}, 
-                    {headers: {Authorization: `Bearer ${accessToken}`}});
+                    {headers: {Authorization: `Bearer ${accessToken}`}, withCredentials: true},
+                    );
         return res;
     }
     catch (err){
@@ -49,7 +50,7 @@ export const resetPass = async (email) => {
     try {
         const res = await axios.post(`${URL}/resetPass`, {
             email: email
-        });
+        }, {withCredentials: true});
         return res;
     }
     catch (err) {
@@ -59,7 +60,7 @@ export const resetPass = async (email) => {
 
 export const checkResetCode = async (code, email) =>{
     try{
-        const res = await axios.get(`${URL}/resetPass/${email}`);
+        const res = await axios.get(`${URL}/resetPass/${email}`, {withCredentials: true});
                 
         if(res) {
             const username = res.data.username;
