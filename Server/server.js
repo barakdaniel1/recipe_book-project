@@ -14,7 +14,7 @@ const PORT = process.env.port;
 //Connect to MongoDB.
 connectDB();
 
-//Add a header to the requests coming from allowed origins. (because CORS made issues)
+//Add a header to the responses to allowed origins.
 app.use(credentials);
 
 //Only let allowed origins to fetch information.

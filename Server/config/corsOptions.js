@@ -1,3 +1,4 @@
+const credentials = require('../middleware/credentials');
 const allowedOrigins = require('./allowedOrigins');
 
 const corsOptions =  {
@@ -7,7 +8,9 @@ const corsOptions =  {
         }
         else callback(new Error("Not allowed by CORS"));
     },
-    status: 200
+    status: 200,
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
 };
 
 module.exports = corsOptions;
