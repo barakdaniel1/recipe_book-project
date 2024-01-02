@@ -15,7 +15,7 @@ const credentials = (req,res,next) => {
             next();
         }
     }
-    next();
+    else res.status(403).json({"message": "Forbidden credentials"});
 }
 
 module.exports = credentials;
