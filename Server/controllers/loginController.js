@@ -12,6 +12,8 @@ const handleLogInController = async (req, res) => {
     if(!foundUser) return res.status(401).json({'message': 'Username not found'})
 
     const match = await bcrypt.compare(pwd,foundUser.password);
+    console.log(process.env.ACCESS_TOKEN_SECRET);
+    console.log(process.env.RENDER_ACCESS_TOKEN_SECRET) // CHECKING FOR ONRENDER!!!
     if(match){
         //get the roles of a user, output array would be all the roles of a user.
         const roles = Object.values(foundUser.roles).filter(Boolean);
