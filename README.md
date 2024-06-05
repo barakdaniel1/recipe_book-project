@@ -1,8 +1,7 @@
 # Recipe Book Project
-Deployed link:
-recipe-book-v0el.onrender.com/
+[https://recipe-book-v0el.onrender.com/](https://recipe-book-v0el.onrender.com/)
 
-You can use an existing account for testing purposes:
+You can use an existing account for testing purposes:<br>
 username: TestingAccount, password: 123456
 
 # Technologies Used
