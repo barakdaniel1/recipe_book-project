@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const recipesController = require('../../controllers/recipesController');
+const recipesController = require('../../controllers/recipes_Controller');
 
 router.route('/')
     .get(recipesController.getAllRecipes)

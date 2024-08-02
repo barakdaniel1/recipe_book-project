@@ -60,18 +60,14 @@ export const resetPass = async (email) => {
 
 export const checkResetCode = async (code, email) =>{
     try{
-        const res = await axios.get(`${URL}/resetPass/${email}`, {withCredentials: true});
+        const res = await axios.post(`${URL}/resetPass/${email}`, {email : email ,code : code} ,{withCredentials: true});
                 
         if(res) {
             const username = res.data.username;
-            const resetCode = res.data.code;
             const accessToken = res.data.accessToken;
-
-            if(code === resetCode.toString()){
-                localStorage.setItem('username',username);
-                localStorage.setItem('accessToken',accessToken);
-                return username;
-            }
+            localStorage.setItem('username',username);
+            localStorage.setItem('accessToken',accessToken);
+            return username;
         }
     }
     catch (err) {

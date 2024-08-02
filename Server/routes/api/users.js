@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const usersController = require('../../controllers/usersController');
+const usersController = require('../../controllers/users_Controller');
 
 router.route('/')
     .get(usersController.getAllUsers)
-    .post(usersController.createUser)
+    .post(usersController.registerUser)
     .put(usersController.updateUser)
     .delete(usersController.deleteUser);
 

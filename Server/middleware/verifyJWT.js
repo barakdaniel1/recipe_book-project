@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 
+//this middleware verifies the token before any http request that needs authorization.
+
 const verifyJWT = (req,res,next) => {
     const authHeader = req.headers.Authorization || req.headers.authorization;
     
@@ -14,8 +16,7 @@ const verifyJWT = (req,res,next) => {
                 (err, decoded) => {
                     if(err) return res.sendStatus(403); // forbidden, invalid token.
 
-                    //add the user information to the request.
-                    
+                    //add the user information to the request.                 
                     req.username = decoded.UserInfo.username; 
                     req.roles = decoded.UserInfo.roles;
                     next();

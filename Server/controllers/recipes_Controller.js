@@ -1,5 +1,8 @@
-const User = require('../model/User');
-const {getUserByUserName_params} = require('./usefulFunctions');
+const {createRecipeService} = require ('../services/recipes_services/create_recipe_service');
+const { deleteRecipeService } = require('../services/recipes_services/delete_recipe_service');
+const { getRecipeService } = require('../services/recipes_services/get_recipe_service');
+const { getAllRecipesService } = require('../services/recipes_services/get_recipes_service');
+const { updateRecipeService } = require('../services/recipes_services/update_recipe_service');
 
 
 /*
@@ -15,35 +18,21 @@ const createRecipe = async (req,res) => {
     
     if(!req.params?.username) return res.status(400)
             .json({"message": "Username is required."});
+    
     try {
-        const foundUser = await getUserByUserName_params(req,res);
-        if(!foundUser) return res.status(204).json({"message": "User not found"});
-        
-        //get the information.
+       //verify again that the data is normalized with end of lines correctly.
+       //we need to normalize end of lines because different environments have different
+       //end of lines.
+       //basically, we set new lines to be \n, regardless of the environment.
         const recipeName = req.body.recipename.replace(/\r?\n/g, '\n');
         const ingredients = req.body.ingredients.replace(/\r?\n/g, '\n');
         const instructions = req.body.instructions.replace(/\r?\n/g, '\n');
         const tags = (req.body.tags || "").replace(/\r?\n/g, '\n');
         const image = req.body.image;
 
-        const newRecipe = {
-            recipename: recipeName,
-            ingredients: ingredients,
-            instructions: instructions,
-            tags: tags,
-            image: image
-        }
-
-        //check if recipe already exists.
-        const isExist = foundUser.recipes.filter((recipe) => recipe.recipename === recipeName);
-        if(isExist.length > 0) return res.status(409)
-                                .json({"message": "recipe name already exists."})
-        
-        
-        //add the new recipe to the user's recipe list.
-        foundUser.recipes.push(newRecipe);
-        const result = await foundUser.save();
-        res.json(result);
+        //create the recipe
+        await createRecipeService(req.params.username ,recipeName, ingredients, instructions, tags, image);
+        return res.status(200).json({"message" : "recipe created successfully!"});
     }
     catch (err) {
         return res.status(400).json({"message": err.message});
@@ -51,12 +40,14 @@ const createRecipe = async (req,res) => {
 }
 
 const getAllRecipes = async (req,res) => {
+    //verify username exists
     if(!req.params?.username) return res.status(400)
         .json({"message": "Username is required."});
+
     try {
-        const foundUser = await getUserByUserName_params(req,res);
-        if(!foundUser) return res.status(204).json({"message": "User not found"});
-        res.json(foundUser.recipes);
+        //fetch all the recipes
+        const recipes = await getAllRecipesService(req.params.username);
+        return res.status(200).json({"recipes" : recipes});
     }
     catch(err) {
         return res.status(400).json({"message": err.message});
@@ -64,20 +55,16 @@ const getAllRecipes = async (req,res) => {
 }
 
 const deleteRecipe = async(req,res) => {
+    //verify that recipe name and username exist.
     if(!req.body?.recipename) return res.status(204)
                                 .json({"message": "Recipe name is required"});
     if(!req.params?.username) return res.status(400)
                                 .json({"message": "Username is required."});
+
     try {
-        const foundUser = await getUserByUserName_params(req,res);
-        if(!foundUser) return res.status(204).json({"message": "User not found"});
-        
-        const recipeName = req.body.recipename;
-        
-        foundUser.recipes = foundUser.recipes.filter((recipe) => recipe.recipename !== recipeName);
-        
-        const result = await foundUser.save();
-        res.json(result);
+        //delete the recipe
+        await deleteRecipeService(req.params.username, req.body.recipename);
+        return res.status(200).json({"message" : "recipe deleted successfully!"});
     }
     catch(err) {
         return res.status(400).json({"message": err.message});
@@ -92,21 +79,18 @@ const updateRecipe = async(req,res) => {
 
     if(!req.params?.username) return res.status(400)
         .json({"message": "Username is required."});
+
     try {
-        const updatedRecipe = await User.updateOne(
-            {
-                username : req.params.username,
-                'recipes.recipename' : req.body.recipename
-            },
-            {
-                $set: {
-                    'recipes.$.ingredients' : req.body.ingredients,
-                    'recipes.$.instructions' : req.body.instructions,
-                    'recipes.$.tags' : req.body.tags
-                }
-            });
-            
-            res.json(updatedRecipe);
+        //normalize lines.
+        const recipeName = req.body.recipename.replace(/\r?\n/g, '\n');
+        const ingredients = req.body.ingredients.replace(/\r?\n/g, '\n');
+        const instructions = req.body.instructions.replace(/\r?\n/g, '\n');
+        const tags = (req.body.tags || "").replace(/\r?\n/g, '\n');
+
+        //update the recipe.
+        await updateRecipeService(req.params.username, recipeName, ingredients, instructions, tags);
+        
+        return res.status(200).json({"message" : "recipe updated successfully!"});
     }
     catch(err) {
         return res.status(400).json({"message": err.message});
@@ -114,20 +98,16 @@ const updateRecipe = async(req,res) => {
 }
 
 const getRecipe = async(req,res) =>{
+    //get the needed information from the URL.
     if(!req.params?.recipename) return res.status(403)
                                     .json({"message": "Recipe name is required"});
 
     if(!req.params?.username) return res.status(400)
                                     .json({"message": "Username is required."});
-    try {
-        const foundUser = await getUserByUserName_params(req,res);
-        if(!foundUser) return res.status(204).json({"message": "User not found"});
 
-        const recipeName = req.params.recipename;
-        const recipe = foundUser.recipes.filter(
-            (curr_recipe) => curr_recipe.recipename === recipeName);
-        if(recipe.length === 0) return res.status(204).json({"message": "Recipe not found!"})
-        res.json(recipe[0]);
+    try {
+        const recipe = await getRecipeService(req.params.username, req.params.recipename);
+        return res.status(200).json({"recipe" : recipe});
     }
     catch(err) {
         return res.status(400).json({"message": err.message});

@@ -33,7 +33,6 @@ app.use(express.static("./public", {root: __dirname}))
 app.use(cookieParser());
 
 //routes
-app.use("/",require('./routes/root'));
 app.use("/login",require('./routes/login'));
 app.use("/logout",require('./routes/logout'));
 app.use("/refresh",require('./routes/refresh'));
@@ -48,7 +47,7 @@ app.use('/users',require('./routes/api/users'));
 //recipes api CRUD
 app.use('/users/:username/recipes',require('./routes/api/recipes'));
 
-
+//catch any errors that were not handled by the controllers, routes, or other cases.
 app.use(errHandler);
 
 //DB connection & server start.

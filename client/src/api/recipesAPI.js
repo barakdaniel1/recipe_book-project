@@ -8,7 +8,7 @@ export const getRecipes = async (userName,accessToken) => {
     try{
         const res = await axios.get(`${URL}/users/${userName}/recipes`,
         {headers: {Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json'},withCredentials: true});
-        return res.data;
+        return res.data.recipes;
     }
     catch (err) {
         throw new Error(err.response.data.message);
@@ -30,7 +30,7 @@ export const getRecipe = async (userName, accessToken, recipename) => {
     try {
         const res = await axios.get(`${URL}/users/${userName}/recipes/${recipename}`,
                                         {headers:{Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json'},withCredentials: true});
-        return res.data;
+        return res.data.recipe;
     }
     catch (err){
         throw new Error(err.response.data.message);
