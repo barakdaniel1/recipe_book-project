@@ -1,7 +1,8 @@
 # Recipe Book Project
-This is my first project, after I learned via YouTube videos. <br>
-In this project, you can save all your best recipes! <br>
-You can finally lose the old books, and find your desired recipe within seconds!
+[https://recipe-book-v0el.onrender.com/](https://recipe-book-v0el.onrender.com/)
+
+You can use an existing account for testing purposes:<br>
+username: TestingAccount, password: 123456
 
 # Technologies Used
 Frontend - React (Router, Link, useState, useEffect), axios (for http requests). <br>
