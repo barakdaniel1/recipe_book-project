@@ -2,7 +2,7 @@
 [https://recipe-book-v0el.onrender.com/](https://recipe-book-v0el.onrender.com/)
 
 You can use an existing account for testing purposes:<br>
-username: TestingAccount, password: 123456
+username: TestingAccount, password: 12345
 
 # Technologies Used
 Frontend - React (Router, Link, useState, useEffect), axios (for http requests). <br>
