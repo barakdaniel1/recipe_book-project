@@ -18,7 +18,7 @@ export const getRecipes = async (userName,accessToken) => {
 export const addRecipe = async (userName, accessToken, recipe) => {
     try{
     const res = await axios.post(`${URL}/users/${userName}/recipes`,recipe
-                        ,{headers:{Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json'}, withCredentials: true});
+                        ,{headers:{Authorization: `Bearer ${accessToken}`, 'Content-Type': 'multipart/form-data'}, withCredentials: true});
         return res;
     } catch (err){
         throw new Error(err.response.data.message);

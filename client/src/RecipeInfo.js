@@ -2,7 +2,8 @@ import Button from "./Button";
 import "./RecipeInfo.css";
 
 const RecipeInfo = ({ editMode, setEditmode, handleDelete, recipe }) => {
-    const base64Image = recipe.image;
+    const imageUrl = recipe.image;
+    console.log(imageUrl);
 
     return (
         <div className="recipe-container">
@@ -24,7 +25,7 @@ const RecipeInfo = ({ editMode, setEditmode, handleDelete, recipe }) => {
                     <p>{recipe.tags}</p>
                 </div>
 
-                {base64Image && <img src={base64Image} alt="Recipe" className="recipe-image" />}
+                {imageUrl && <img src={imageUrl} alt="Recipe" className="recipe-image" />}
             </div>
 
             <div className="recipe-buttons">

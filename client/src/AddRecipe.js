@@ -14,37 +14,40 @@ const AddRecipe = ({recipes,setRecipes}) => {
     const handleAddRecipe = async (e) => {
         e.preventDefault();
         
-        const recipe = {
-            recipename: recipeName.replace(/\r?\n/g, '\n'), // Normalize line breaks
-            ingredients: ingredients.replace(/\r?\n/g, '\n'),
-            instructions: instructions.replace(/\r?\n/g, '\n'),
-            tags: tags.replace(/\r?\n/g, '\n'),
-            image: image
-          };
+        // Create a FormData object to send as multipart/form-data
+        const formData = new FormData();
+        formData.append('recipename', recipeName.replace(/\r?\n/g, '\n'));
+        formData.append('ingredients', ingredients.replace(/\r?\n/g, '\n'));
+        formData.append('instructions', instructions.replace(/\r?\n/g, '\n'));
+        formData.append('tags', tags.replace(/\r?\n/g, '\n'));
         
+          // Append the image only if it's provided
+        if (image) {
+            formData.append('image', image);
+        }
         try {
-            const res = await addRecipe(userName,accessToken,recipe);
-            if(res){
+            const res = await addRecipe(userName, accessToken, formData);
+            if (res) {
                 setErrorMSG('');
-                const newRecipes = [...recipes,recipe];
+                const newRecipes = [...recipes, {
+                    recipename: recipeName, 
+                    ingredients, 
+                    instructions, 
+                    tags, 
+                    image: res.data.image || '' // Use the image URL if available, otherwise an empty string
+                }];
                 setRecipes(newRecipes);
                 navigate(`/users/${userName}/recipes`);
             }
-        }
-        catch (err) {
+        } catch (err) {
             setErrorMSG(err.message);
         } 
     }
 
     const handleImage = (e) => {
         const file = e.target.files[0];
-
-        if(file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImage(reader.result);
-            };
-            reader.readAsDataURL(file);
+        if (file) {
+            setImage(file); // Save the file directly
         }
     }
 

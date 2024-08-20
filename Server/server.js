@@ -2,13 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const corsOptions = require('./config/corsOptions');
+const corsOptions = require('./Common/config/corsOptions');
 const mongoose = require('mongoose');
-const connectDB = require('./config/dbConn');
+const connectDB = require('./Common/config/dbConn');
 const cookieParser = require('cookie-parser');
-const credentials = require('./middleware/credentials');
-const verifyJWT = require('./middleware/verifyJWT');
-const errHandler = require('./middleware/errorHandler');
+const credentials = require('./Common/middleware/credentials');
+const verifyJWT = require('./Common/middleware/verifyJWT');
+const errHandler = require('./Common/middleware/errorHandler');
 const PORT = process.env.port;
 
 //Connect to MongoDB.
@@ -33,19 +33,19 @@ app.use(express.static("./public", {root: __dirname}))
 app.use(cookieParser());
 
 //routes
-app.use("/login",require('./routes/login'));
-app.use("/logout",require('./routes/logout'));
-app.use("/refresh",require('./routes/refresh'));
-app.use("/register",require('./routes/register'));
-app.use("/resetPass", require('./routes/resetPass'));
+app.use("/login",require('./User_Service/Routes/login'));
+app.use("/logout",require('./User_Service/Routes/logout'));
+app.use("/refresh",require('./User_Service/Routes/refresh'));
+app.use("/register",require('./User_Service/Routes/register'));
+app.use("/resetPass", require('./User_Service/Routes/resetPass'));
 
 //every route after verifyJWT will require validation of the token.
 app.use(verifyJWT);
 
 //users api CRUD.
-app.use('/users',require('./routes/api/users'));
+app.use('/users',require('./User_Service/Routes/api/users'));
 //recipes api CRUD
-app.use('/users/:username/recipes',require('./routes/api/recipes'));
+app.use('/users/:username/recipes',require('./Recipe_Service/Routes/api/recipes'));
 
 //catch any errors that were not handled by the controllers, routes, or other cases.
 app.use(errHandler);
