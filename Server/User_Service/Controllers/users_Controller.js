@@ -153,7 +153,7 @@ const handleVerifyCode = async (req,res) => {
     if(!email || !userCode) return res.status(400).json({"message" : "email or code are missing"});
 
     try{
-        const {username, accessToken} = verifyCode(email, userCode);
+        const {username, accessToken} = await verifyCode(email, userCode);
         return res.status(200).json({username : username, accessToken : accessToken});
     }
     catch (err){
